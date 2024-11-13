@@ -22,3 +22,16 @@ const words = [
   "loving",
   "north",
 ];
+
+function addWordToDOM() {
+  const randomWord = words[Math.floor(Math.random() * words.length)];
+  let typingWords = document.querySelector("h2");
+  typingWords.textContent = randomWord;
+
+}
+addWordToDOM(); 
+
+
+function updateScore() {
+  let score = document.getElementById("score");
+}
