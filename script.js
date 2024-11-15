@@ -29,6 +29,7 @@ const scoreElement = document.getElementById("score"); // Score display element
 const input = document.getElementById("text"); // Input field
 let timeLeft = 10;
 const timerElement = document.getElementById("time"); // Timer display element
+const settingsButton = document.getElementById("settings-btn"); // Settings button tag
 
 
 function addWordToDOM() {
@@ -40,6 +41,8 @@ function addWordToDOM() {
 
 function updateScore() {
 
+  settingsButton.style.visibility = "hidden";
+
   input.addEventListener("input", function (e) {
     const typedWords = e.target.value.trim(); 
 
@@ -50,14 +53,11 @@ function updateScore() {
       addWordToDOM(); 
       input.value = ""; 
       timeLeft = timeLeft + 5;
+     
 
     } else if (!currentWord.startsWith(typedWords)) {
-     
-      typingWords.textContent = "Game over!";
-      // score = 0;
-      scoreElement.textContent = score; 
-      input.value = "";  
-      timeLeft = "0";
+      gameOver();
+    
     }
   }
 
@@ -85,8 +85,15 @@ function gameOver() {
   // score = 0;
   scoreElement.textContent = score; 
   input.value = "";
-
+  timeLeft = 0;
+  timerElement.textContent = `${timeLeft} s`;
+  settingsButton.style.visibility = "visible";
 }
+
+
+// function settingsButton (){
+//  if ()
+// }
 
 
 updateTime();
