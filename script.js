@@ -31,7 +31,8 @@ let timeLeft = 10;
 const timerElement = document.getElementById("time"); // Timer display element
 const settingsButton = document.getElementById("settings-btn"); // Settings button tag
 const difficultyDropdown = document.getElementById("difficulty"); // Difficulty dropdown
-
+let TimerInterval;
+const restartButton = document.createElement('button');
 
 function addWordToDOM() {
   currentWord = words[Math.floor(Math.random() * words.length)];  // Adding random word
@@ -97,11 +98,30 @@ function gameOver() {
   timeLeft = 0;
   timerElement.textContent = `${timeLeft} s`;
   settingsButton.style.visibility = "visible";
+  // createRestartButton();
 }
 
 
+function createRestartButton() {
+
+  restartButton.textContent = 'Restart game';
+  // document.body.appendChild(restartButton);
+  restartButton.id = "restart-btn";
+
+  restartButton.setAttribute("onclick", "location.reload()");
+  restartButton.addEventListener("click", function () {
+    location.reload();
+  });
+
+  const endGameContainer = document.getElementById("end-game-container");
+  endGameContainer.innerHTML = ""; 
+  endGameContainer.appendChild(restartButton);
 
 
+}
+
+
+createRestartButton();
 updateTime();
 updateScore();
 addWordToDOM();
